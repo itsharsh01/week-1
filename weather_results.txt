@@ -1,0 +1,6 @@
+Average High Temperature: 36.13°C
+Median High Temperature: 38°C
+Average Low Temperature: 18.13°C
+Median Low Temperature: 18°C
+Average Humidity: 16.07%
+Median Humidity: 14%

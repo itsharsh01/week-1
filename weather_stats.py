@@ -33,10 +33,13 @@ median_temp_high = statistics.median(temp_highs)
 median_temp_low = statistics.median(temp_lows)
 median_humidity = statistics.median(humidities)
 
-# Print results
-print(f"Average High Temperature: {avg_temp_high:.2f}°C")
-print(f"Median High Temperature: {median_temp_high}°C")
-print(f"Average Low Temperature: {avg_temp_low:.2f}°C")
-print(f"Median Low Temperature: {median_temp_low}°C")
-print(f"Average Humidity: {avg_humidity:.2f}%")
-print(f"Median Humidity: {median_humidity}%")
+# Store results in a text file
+with open('weather_results.txt', 'w') as f:
+    f.write(f"Average High Temperature: {avg_temp_high:.2f}°C\n")
+    f.write(f"Median High Temperature: {median_temp_high}°C\n")
+    f.write(f"Average Low Temperature: {avg_temp_low:.2f}°C\n")
+    f.write(f"Median Low Temperature: {median_temp_low}°C\n")
+    f.write(f"Average Humidity: {avg_humidity:.2f}%\n")
+    f.write(f"Median Humidity: {median_humidity}%\n")
+
+print("Results saved to weather_results.txt")
