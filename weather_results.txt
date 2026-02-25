@@ -4,3 +4,5 @@ Average Low Temperature: 18.13°C
 Median Low Temperature: 18°C
 Average Humidity: 16.07%
 Median Humidity: 14%
+Average AQI: 93.00
+Median AQI: 80

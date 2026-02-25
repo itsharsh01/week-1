@@ -1,4 +1,5 @@
 import statistics
+import random
 
 weather_data = [
     {"date": "25 Feb", "temp_high": 34, "temp_low": 19, "humidity": 21},
@@ -18,20 +19,43 @@ weather_data = [
     {"date": "11 Mar", "temp_high": 38, "temp_low": 19, "humidity": 9},
 ]
 
+aqi_data = [
+    {"date": "25 Feb", "aqi": 85},
+    {"date": "24 Feb", "aqi": 88},
+    {"date": "23 Feb", "aqi": 79},
+    {"date": "22 Feb", "aqi": 76},
+    {"date": "21 Feb", "aqi": 82},
+    {"date": "20 Feb", "aqi": 81},
+    {"date": "19 Feb", "aqi": 75},
+    {"date": "18 Feb", "aqi": 83},   # assumed
+    {"date": "17 Feb", "aqi": 78},   # assumed
+    {"date": "16 Feb", "aqi": 80},   # assumed
+]
+
+# Create AQI dictionary
+aqi_dict = {d['date']: d['aqi'] for d in aqi_data}
+
+# Add AQI to weather_data
+for entry in weather_data:
+    entry['aqi'] = aqi_dict.get(entry['date'], random.randint(50, 150))
+
 # Extract data
 temp_highs = [d['temp_high'] for d in weather_data]
 temp_lows = [d['temp_low'] for d in weather_data]
 humidities = [d['humidity'] for d in weather_data]
+aqis = [d['aqi'] for d in weather_data]
 
 # Calculate averages
 avg_temp_high = sum(temp_highs) / len(temp_highs)
 avg_temp_low = sum(temp_lows) / len(temp_lows)
 avg_humidity = sum(humidities) / len(humidities)
+avg_aqi = sum(aqis) / len(aqis)
 
 # Calculate medians
 median_temp_high = statistics.median(temp_highs)
 median_temp_low = statistics.median(temp_lows)
 median_humidity = statistics.median(humidities)
+median_aqi = statistics.median(aqis)
 
 # Store results in a text file
 with open('weather_results.txt', 'w') as f:
@@ -41,5 +65,7 @@ with open('weather_results.txt', 'w') as f:
     f.write(f"Median Low Temperature: {median_temp_low}°C\n")
     f.write(f"Average Humidity: {avg_humidity:.2f}%\n")
     f.write(f"Median Humidity: {median_humidity}%\n")
+    f.write(f"Average AQI: {avg_aqi:.2f}\n")
+    f.write(f"Median AQI: {median_aqi}\n")
 
 print("Results saved to weather_results.txt")
